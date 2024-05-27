@@ -5,7 +5,7 @@ let boatScale = 0.5;
 function preload() {
   boatImage = loadImage('assets/transparent_boat.png');
   group1Image = loadImage('assets/Group 1.png'); 
-  birdsImage = loadImage('assets/birds.png');  // 加载Group 1图像
+  birdsImage = loadImage('assets/birds.png');  
 }
 
 function setup() {
@@ -15,11 +15,6 @@ function setup() {
   boatY = height - boatImage.height * 0.1 * boatScale;
   frameRate(3);
 }
-function mousePressed() {
-  // 当鼠标点击时，改变船的方向并随机改变速度
-  boatDirection *= -1;
-  boatSpeed = random(1, 5); // 随机速度在1到5之间
-}
 
 function draw() {
   background(230, 240, 240);
@@ -28,7 +23,7 @@ function draw() {
   drawBoat();
   moveBoat();
   // 绘制 Group 1 图像在所有内容之上
-  image(group1Image, 460, 300, 170, 150);
+  image(group1Image, 500, 300, 170, 150);
   image(birdsImage, 1000, 0, 300, 150);
 }
 
