@@ -1,19 +1,35 @@
-let boatImage, group1Image;
+let boatImage, birdsImage;
+let doveImages = [];
+let dovePositions = [
+  { x: 70, y: 600, width: 200, height: 180 },
+  { x: 240, y: 500, width: 140, height: 120 },
+  { x: 340, y: 320, width: 200, height: 180 },
+  { x: 500, y: 200, width: 220, height: 180 },
+  { x: 720, y: 120, width: 300, height: 220 },
+  { x: 950, y: 200, width: 400, height: 300 },
+  { x: 670, y: 160, width: 400, height: 300 },
+  { x: 300, y: 60, width: 500, height: 400 },
+  { x: 10, y: 0, width: 600, height: 600 }
+];
 let boatX, boatY;
 let boatScale = 0.5;
+let showDoves = false;
+let currentFrame = 0;
 
 function preload() {
   boatImage = loadImage('assets/transparent_boat.png');
-  group1Image = loadImage('assets/Group 1.png'); 
-  birdsImage = loadImage('assets/birds.png');  
+  birdsImage = loadImage('assets/birds.png');
+  for (let i = 1; i <= 9; i++) {
+    doveImages.push(loadImage(`assets/doves/dove${i}.png`));
+  }
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   boatX = 80;
-  // 确保在调整窗口大小时船只位置也会适当调整
   boatY = height - boatImage.height * 0.1 * boatScale;
-  frameRate(3);
+  frameRate(5);
+  noStroke();
 }
 
 function draw() {
@@ -22,16 +38,31 @@ function draw() {
   drawWaterSurface();
   drawBoat();
   moveBoat();
-  // 绘制 Group 1 图像在所有内容之上
-  image(group1Image, 500, 300, 170, 150);
   image(birdsImage, 1000, 0, 300, 150);
+
+  if (showDoves) {
+    let index = currentFrame % doveImages.length;
+    let pos = dovePositions[index];
+    image(doveImages[index], pos.x, pos.y, pos.width, pos.height);
+
+    if (index === doveImages.length - 1 && currentFrame >= doveImages.length - 1) {
+      showDoves = false;  // Stop showing doves after one complete cycle
+    }
+    currentFrame++;
+  }
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  // 确保在窗口大小变化时更新船的位置
   boatY = height - boatImage.height * 0.1 * boatScale;
 }
+
+function mousePressed() {
+  showDoves = true;  // Enable the dove animation to start again
+  currentFrame = 0;  // Reset the frame index for a fresh start
+}
+
+
 
 function drawLayeredMountains() {
   let layers = 5;
@@ -70,3 +101,7 @@ function moveBoat() {
   boatX = constrain(boatX, 0, width - boatImage.width * boatScale);
   boatY = constrain(boatY, height - 100 - boatImage.height * boatScale, height - boatImage.height * boatScale);
 }
+
+
+
+
