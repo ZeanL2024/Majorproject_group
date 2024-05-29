@@ -18,7 +18,6 @@ In this project, I was responsible for the following animations:
 
 ### Animation Drivers
 
-- **Perlin Noise**: Used to create a dynamic wave background, simulating natural water movements.
 - **Time-Based**: Utilizing p5.js's `frameCount` to control the animation's playback, ensuring smooth progression.
 
 ### Animated Properties
@@ -41,9 +40,6 @@ The project code includes detailed comments explaining the purpose and workings 
 ### External Resources Reference
 
 - **Old Film Effect Implementation Inspiration**: Derived from various digital art tutorials, particularly a series of p5.js tutorials available on YouTube.
+**OpenProcessing Example** - Provides a technical example of animation implementation, reference link at [OpenProcessing Sketch](https://openprocessing.org/sketch/743533).
+![teche image](image/oldfilm.png)
 
-## GitHub Repository Link
-
-Please visit the following GitHub link to view the project source code and all related files:
-
-[GitHub - Dynamic Artwork Display](https://github.com/ZeanL2024/Majorproject_group/tree/main/Assignment)
