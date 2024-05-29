@@ -41,5 +41,4 @@ The project code includes detailed comments explaining the purpose and workings 
 
 - **Old Film Effect Implementation Inspiration**: Derived from various digital art tutorials, particularly a series of p5.js tutorials available on YouTube.
 **OpenProcessing Example** - Provides a technical example of animation implementation, reference link at [OpenProcessing Sketch](https://openprocessing.org/sketch/743533).
-![teche image](image/oldfilm.png)
 
