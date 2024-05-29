@@ -5,8 +5,8 @@
 
 This project, created with p5.js, showcases a dynamic piece of art that simulates old film effects and features a dynamically animated boat and dove. Here is how you can interact with the artwork:
 
-- **Page Load**: Upon loading the page, the animation will automatically start.
-- **Mouse Click**: Click anywhere on the screen to restart the animation.
+- **Page Load**: Upon loading the page, the background animation will automatically start.
+- **Mouse Click**: Click anywhere on the screen to restart the dove animation.
 - **Window Resize**: Adjusting the browser window size will redraw the screen to ensure the animation fits the new dimensions.
 
 ## Animation Implementation
