@@ -1,4 +1,4 @@
-# Major-project
+# Major-project_indivisual
 # Project Title: Dynamic Artwork Display
 
 ## Interaction Guide
