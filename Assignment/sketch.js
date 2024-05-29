@@ -1,3 +1,4 @@
+// Global variables initialization
 let boatImage, birdsImage;
 let doveImages = [];
 let dovePositions = [
@@ -16,6 +17,7 @@ let boatScale = 0.5;
 let showDoves = false;
 let currentFrame = 0;
 
+// Preload images
 function preload() {
   boatImage = loadImage('assets/transparent_boat.png');
   birdsImage = loadImage('assets/birds.png');
@@ -24,14 +26,16 @@ function preload() {
   }
 }
 
+// Setup canvas and initial state
 function setup() {
   createCanvas(windowWidth, windowHeight);
   boatX = 80;
   boatY = height - boatImage.height * 0.1 * boatScale;
-  frameRate(5);
+  frameRate(4);  // Higher frame rate for smoother animation
   noStroke();
 }
 
+// Drawing function, repeatedly executed, draws animations and interface
 function draw() {
   background(230, 240, 240);
   drawLayeredMountains();
@@ -50,24 +54,27 @@ function draw() {
     }
     currentFrame++;
   }
+
+  applyOldFilmEffect();  // Applying the old film effect
 }
 
+// Window resize event trigger
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   boatY = height - boatImage.height * 0.1 * boatScale;
 }
 
+// Mouse click event, used to start animation
 function mousePressed() {
-  showDoves = true;  // Enable the dove animation to start again
-  currentFrame = 0;  // Reset the frame index for a fresh start
+  showDoves = true;  // Enable dove animation
+  currentFrame = 0;  // Restart animation frame count
 }
 
-
-
+// Draw layered mountain background
 function drawLayeredMountains() {
   let layers = 5;
   let maxHeight = height / 6;
-  let noiseScale = 0.01;
+  let noiseScale = 0.01;  // Perlin noise scale
   for (let i = layers - 1; i >= 0; i--) {
     let baseHeight = height - (i * maxHeight * 0.5 + 120);
     let interColor = lerpColor(color(70, 130, 130, 150), color(200, 220, 220, 50), i / layers);
@@ -84,24 +91,37 @@ function drawLayeredMountains() {
   }
 }
 
+// Draw water surface
 function drawWaterSurface() {
   fill(180, 200, 200, 180);
   rect(0, height - 100, width, 100);
 }
 
+// Draw the boat
 function drawBoat() {
   tint(150, 150, 150, 150);
   image(boatImage, boatX, boatY, boatImage.width * boatScale, boatImage.height * boatScale);
   noTint();
 }
 
+// Apply old film effect to simulate noise and occasional flicker
+function applyOldFilmEffect() {
+  // Adding noise
+  for (let i = 0; i < 50; i++) {
+    fill(255, 255, 255, random(250, 400));
+    noStroke();
+    ellipse(random(width), random(height), 4, 3);
+  }
+
+  // Occasionally flash the screen
+  if (random(100) < 1) {  // Adjust frequency
+    fill(255, 255, 255, random(100, 300));
+    rect(0, 0, width, height);
+  }
+}
 function moveBoat() {
   boatX += random(1, 5);
   boatY += random(-2, 5);
   boatX = constrain(boatX, 0, width - boatImage.width * boatScale);
   boatY = constrain(boatY, height - 100 - boatImage.height * boatScale, height - boatImage.height * boatScale);
 }
-
-
-
-
